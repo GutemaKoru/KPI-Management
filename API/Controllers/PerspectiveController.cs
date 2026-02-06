@@ -24,9 +24,9 @@ namespace API.Controllers
             return perspectives;
         }
         [HttpGet("{id}")]
-        public ActionResult<Perspective> GetPerspective(string id)
+        public async Task<ActionResult<Perspective>> GetPerspective(string id)
         {
-            var perspective = context.Perspectives.Find(id);
+            var perspective = await context.Perspectives.FindAsync(id);
             if (perspective is null) return NotFound();
             return perspective;
         }
