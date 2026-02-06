@@ -2,6 +2,7 @@ using API.Data;
 using API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -17,9 +18,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyList<Perspective>> GetPerspectives()
+        public async Task<ActionResult<IReadOnlyList<Perspective>>> GetPerspectives()
         {
-            var perspectives = context.Perspectives.ToList();
+            var perspectives = await context.Perspectives.ToListAsync();
             return perspectives;
         }
     }
